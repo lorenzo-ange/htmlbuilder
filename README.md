@@ -11,7 +11,31 @@ With HTMLBuilder you have:
 - Extreme flexibility: do you need a tag/attribute not expected by HTMLBuilder? No problem!
 
 ## Basic usage
+```kotlin
+import com.example.angelinilorenzo.htmlbuilder.*
 
+fun main(args: Array<String>) {
+    val html = html {
+        head { +"Hello World title" }
+        body {
+            p { +"Hello world!" }
+        }
+    }
+    println(html)
+}
+```
+The snippet of code above produces the following output:
+```html
+<!DOCTYPE html>
+<html>
+  <head>Hello World title</head>
+  <body>
+    <p>Hello world!</p>
+  </body>
+</html>
+```
+
+## Another example
 ```kotlin
 import com.example.angelinilorenzo.htmlbuilder.*
 
@@ -47,7 +71,6 @@ fun main(args: Array<String>) {
 }
 ```
 The snippet of code above produces the following output:
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -70,12 +93,9 @@ The snippet of code above produces the following output:
 ```
 
 ## Kotlin functions as HTML templates
-
 No more Cut & Paste!
 
 Use all the tools and abstractions Kotlins gives you to create your reusable components.
-
-
 ```kotlin
 import com.example.angelinilorenzo.htmlbuilder.*
 
@@ -151,7 +171,6 @@ The snippet of code above produces the following output:
 ```
 
 ## Custom attributes
-
 ```kotlin
 import com.example.angelinilorenzo.htmlbuilder.*
 
@@ -212,6 +231,4 @@ The snippet of code above produces the following output:
     </custom-tag>
   </body>
 </html>
-
-
 ```
