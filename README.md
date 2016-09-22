@@ -28,7 +28,7 @@ import com.example.angelinilorenzo.htmlbuilder.*
 
 fun main(args: Array<String>) {
     val html = html {
-        head { +"Hello World title" }
+        head { title { +"Hello World title" } }
         body {
             p { +"Hello world!" }
         }
@@ -40,7 +40,9 @@ The snippet of code above produces the following output:
 ```html
 <!DOCTYPE html>
 <html>
-  <head>Hello World title</head>
+  <head>
+    <title>Hello World title</title>
+  </head>
   <body>
     <p>Hello world!</p>
   </body>
@@ -53,7 +55,7 @@ import com.example.angelinilorenzo.htmlbuilder.*
 
 fun main(args: Array<String>) {
     val html = html {
-        head { +"Sample title" }
+        head { title { +"Sample title" } }
         body {
             h1 { +"Writing typesafe HTML with Kotlin" }
             p { +"Lorem ipsum dolor sit amet, consectetur adipiscing."
@@ -83,7 +85,9 @@ The snippet of code above produces the following output:
 ```html
 <!DOCTYPE html>
 <html>
-  <head>Sample title</head>
+  <head>
+    <title>Sample title</title>
+  </head>
   <body>
     <h1>Writing typesafe HTML with Kotlin</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing.<a href="http://www.example.com">Elit</a>Ut enim ad minim 5, quis nostrud exercitation ullamco laboris, laboris, laboris, laboris, <strong>commodo consequat</strong></p>
@@ -117,7 +121,7 @@ fun main(args: Array<String>) {
     }
 
     val html = html {
-        head { +"Students hobbies" }
+        head { title { +"Students hobbies" } }
         body {
             h1 { +"Students hobbies" }
             student("Alex McKay", listOf("Surf the internet", "Play PC games"))
@@ -132,7 +136,9 @@ The snippet of code above produces the following output:
 ```html
 <!DOCTYPE html>
 <html>
-  <head>Students hobbies</head>
+  <head>
+    <title>Students hobbies</title>
+  </head>
   <body>
     <h1>Students hobbies</h1>
     <p>
@@ -166,7 +172,7 @@ import com.example.angelinilorenzo.htmlbuilder.*
 
 fun main(args: Array<String>) {
     val html = html {
-        head { +"Custom attributes" }
+        head { title { +"Custom attributes" } }
         body {
             div {
                 attribute("my-attribute", "my-value")
@@ -180,7 +186,9 @@ The snippet of code above produces the following output:
 ```html
 <!DOCTYPE html>
 <html>
-  <head>Custom attributes</head>
+  <head>
+    <title>Custom attributes</title>
+  </head>
   <body>
     <div my-attribute="my-value"></div>
   </body>
@@ -193,7 +201,7 @@ import com.example.angelinilorenzo.htmlbuilder.*
 
 fun main(args: Array<String>) {
     val html = html {
-        head { +"Custom tags" }
+        head { title { +"Custom tags" } }
         body {
             tag("custom-tag"){
                 p { +"Hello world!" }
@@ -207,7 +215,9 @@ The snippet of code above produces the following output:
 ```html
 <!DOCTYPE html>
 <html>
-  <head>Custom tags</head>
+  <head>
+    <title>Custom tags</title>
+  </head>
   <body>
     <custom-tag>
       <p>Hello world!</p>
