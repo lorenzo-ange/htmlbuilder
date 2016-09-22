@@ -1,14 +1,26 @@
 # HTMLBuilder
-HTMLBuilder is an open source library extracted from the project [Kara Web Framework](http://karaframework.com/)
+HTMLBuilder is an Open Source library (Apache Licenses, version 2.0) extracted from the project [Kara Web Framework](http://karaframework.com/)
 
-It provides a rich DSL for generating typesafe HTML using the Kotlin language.
+It provides a rich **DSL for generating typesafe HTML** using the Kotlin language.
 
-With HTMLBuilder you have:
+HTMLBuilder is really **lightweight**! It doesn't have dependencies and the jar lib is ~ 230KB. 
+
+With HTMLBuilder you get:
 - All the power of Kotlin to generate HTML (idioms, abstractions, functional goodies, if/when clauses, loops...)
 - Simple Kotlin functions as reusable HTML templates
 - HTML elements always placed correctly (ex: 'li' tag outside of 'ul' tag will result in a compiler error)
 - Tags automatically closed and indented
 - Extreme flexibility: do you need a tag/attribute not expected by HTMLBuilder? No problem!
+
+## Add to your project
+Download the jar file from [Github Releases](https://github.com/lorenzo-ange/htmlbuilder/releases).
+
+Adding the library to your project with Gradle is simple as:
+```
+dependencies {
+    compile files("PATH_TO_LIB")
+}
+```
 
 ## Basic usage
 ```kotlin
