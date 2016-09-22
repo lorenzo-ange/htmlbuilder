@@ -1,6 +1,4 @@
 
 /.idea/
 /.gradle/
-/build/classes/
-/build/kotlin-classes/
-/build/tmp/
+/build/
