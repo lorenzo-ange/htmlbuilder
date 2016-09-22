@@ -1,10 +1,10 @@
-# Kotlin HTMLBuilder
+# HTMLBuilder
 HTMLBuilder is an open source library extracted from the project [Kara Web Framework](http://karaframework.com/)
 
-It provides a DSL for generating HTML using the Kotlin language.
+It provides a rich DSL for generating typesafe HTML using the Kotlin language.
 
 With HTMLBuilder you have:
-- All the power of Kotlin to generate HTML (idioms, abstractions, functional goodies, if clauses, loops...)
+- All the power of Kotlin to generate HTML (idioms, abstractions, functional goodies, if/when clauses, loops...)
 - Simple Kotlin functions as reusable HTML templates
 - HTML elements always placed correctly (ex: 'li' tag outside of 'ul' tag will result in a compiler error)
 - Tags automatically closed and indented
@@ -44,17 +44,14 @@ fun main(args: Array<String>) {
         head { +"Sample title" }
         body {
             h1 { +"Writing typesafe HTML with Kotlin" }
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing." }
-            a {
-                href = DirectLink("http://www.example.com")
-                +"Elit"
-            }
-            p {
-                val something = 44
-                +"Ut enim ad minim $something, quis nostrud exercitation ullamco "
+            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing."
+                a {
+                    href = DirectLink("http://www.example.com")
+                    +"Elit"
+                }
+                +"Ut enim ad minim ${ 3 + 2 }, quis nostrud exercitation ullamco "
                 (0..3).forEach { +"laboris, " }
-                strong { +"commodo" }
-                +" consequat."
+                strong { +"commodo consequat" }
             }
             p {
                 val listItems = listOf( "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -77,9 +74,7 @@ The snippet of code above produces the following output:
   <head>Sample title</head>
   <body>
     <h1>Writing typesafe HTML with Kotlin</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing </p>
-    <a href="http://www.example.com">elit</a>
-    <p>Ut enim ad minim 44, quis nostrud exercitation ullamco laboris laboris laboris laboris <strong>commodo </strong>consequat.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing.<a href="http://www.example.com">Elit</a>Ut enim ad minim 5, quis nostrud exercitation ullamco laboris, laboris, laboris, laboris, <strong>commodo consequat</strong></p>
     <p>
       A list:
       <ul>
@@ -103,7 +98,6 @@ fun main(args: Array<String>) {
     fun HtmlBodyTag.student(name: String, hobbies: List<String>) {
         p {
             +"Hello my name is $name! and these are my hobbies:"
-            img { src = DirectLink("http://www.example.com/students/photos/$name.png") }
             ul {
                 hobbies.forEach { li { +it } }
             }
@@ -114,12 +108,9 @@ fun main(args: Array<String>) {
         head { +"Students hobbies" }
         body {
             h1 { +"Students hobbies" }
-            p {
-                student("Alex McKay", listOf("Surf the internet", "Play PC games"))
-                student("Marc Bale", listOf("Play guitar", "Read a book"))
-                student("John Peterson", listOf("Have a walk", "Go to gym"))
-                student("Gina Carter", listOf("Cooking", "Play football"))
-            }
+            student("Alex McKay", listOf("Surf the internet", "Play PC games"))
+            student("Marc Bale", listOf("Play guitar", "Read a book"))
+            student("John Peterson", listOf("Have a walk", "Go to gym"))
         }
     }
     println(html)
@@ -133,38 +124,25 @@ The snippet of code above produces the following output:
   <body>
     <h1>Students hobbies</h1>
     <p>
-      <p>
-        Hello my name is Alex McKay! and these are my hobbies:
-        <img src="http://www.example.com/students/photos/Alex McKay.png"/>
-        <ul>
-          <li>Surf the internet</li>
-          <li>Play PC games</li>
-        </ul>
-      </p>
-      <p>
-        Hello my name is Marc Bale! and these are my hobbies:
-        <img src="http://www.example.com/students/photos/Marc Bale.png"/>
-        <ul>
-          <li>Play guitar</li>
-          <li>Read a book</li>
-        </ul>
-      </p>
-      <p>
-        Hello my name is John Peterson! and these are my hobbies:
-        <img src="http://www.example.com/students/photos/John Peterson.png"/>
-        <ul>
-          <li>Have a walk</li>
-          <li>Go to gym</li>
-        </ul>
-      </p>
-      <p>
-        Hello my name is Gina Carter! and these are my hobbies:
-        <img src="http://www.example.com/students/photos/Gina Carter.png"/>
-        <ul>
-          <li>Cooking</li>
-          <li>Play football</li>
-        </ul>
-      </p>
+      Hello my name is Alex McKay! and these are my hobbies:
+      <ul>
+        <li>Surf the internet</li>
+        <li>Play PC games</li>
+      </ul>
+    </p>
+    <p>
+      Hello my name is Marc Bale! and these are my hobbies:
+      <ul>
+        <li>Play guitar</li>
+        <li>Read a book</li>
+      </ul>
+    </p>
+    <p>
+      Hello my name is John Peterson! and these are my hobbies:
+      <ul>
+        <li>Have a walk</li>
+        <li>Go to gym</li>
+      </ul>
     </p>
   </body>
 </html>
@@ -176,9 +154,7 @@ import com.example.angelinilorenzo.htmlbuilder.*
 
 fun main(args: Array<String>) {
     val html = html {
-        head {
-            +"Custom attributes"
-        }
+        head { +"Custom attributes" }
         body {
             div {
                 attribute("my-attribute", "my-value")
@@ -205,16 +181,11 @@ import com.example.angelinilorenzo.htmlbuilder.*
 
 fun main(args: Array<String>) {
     val html = html {
-        head {
-            +"Custom tags"
-        }
+        head { +"Custom tags" }
         body {
             tag("custom-tag"){
-                p {
-                    +"Hello world!"
-                }
+                p { +"Hello world!" }
             }
-
         }
     }
     println(html)
