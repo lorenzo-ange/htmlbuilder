@@ -104,6 +104,46 @@ The snippet of code above produces the following output:
 ```
 
 ## Kotlin functions as HTML templates
+```kotlin
+import com.example.angelinilorenzo.htmlbuilder.*
+
+fun defaultLayout(content: HtmlBodyTag.() -> Unit) =
+    html {
+        head {
+            title { +"Sample title" }
+        }
+        body {
+            div("container") {
+                content()
+            }
+        }
+    }
+
+fun main(args: Array<String>) {
+    val html = defaultLayout {
+        h1 { +"My content inside a layout :)" }
+        p { +"Lorem ipsum dolor sit amet, consectetur adipiscing." }
+    }
+    println(html)
+}
+```
+The snippet of code above produces the following output:
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample title</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My content inside a layout :)</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+    </div>
+  </body>
+</html>
+```
+
+## Kotlin functions as HTML reusable components
 No more Cut & Paste!
 
 Use all the tools and abstractions Kotlins gives you to create your reusable components.
